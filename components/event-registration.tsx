@@ -23,10 +23,8 @@ interface Event {
 
 export function EventRegistrationComponent() {
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedContact, setSelectedContact] = useState<Contact | null>(null)
   const [formData, setFormData] = useState<Contact>({ id: '', name: '', email: '', company: '', mobile: '' })
   const [showDropdown, setShowDropdown] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
   const [contacts, setContacts] = useState<Contact[]>([])
   const [currentEvent, setCurrentEvent] = useState<Event | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -71,11 +69,9 @@ export function EventRegistrationComponent() {
     const value = e.target.value
     setSearchTerm(value)
     setShowDropdown(value.length > 0)
-    setSelectedContact(null)
   }
 
   const handleSelectContact = (contact: Contact) => {
-    setSelectedContact(contact)
     setFormData(contact)
     setShowDropdown(false)
     setSearchTerm(contact.name)
